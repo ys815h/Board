@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="ko">
 <head>
 <title><%=util.Property.title %></title>
 <%@ include file="/WEB-INF/view//include/headHtml.jsp" %>
 <script>
+
 </script>
 </head>
 <body>
@@ -34,24 +36,28 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td colspan="5">등록된 데이터가 없습니다.</td>
-					</tr>
-				<%
+					<c:if test="${empty list }"> 
+						<tr>
+							<td colspan="5">등록된 데이터가 없습니다.</td>
+						</tr>
+					</c:if>
+				<%-- <%
 						String targetUrl = "";
 						for (int i=0; i<10; i++) {
-							targetUrl = "style='cursor:pointer;' onclick=\"location.href='view.do?idx="+i+"'\"";
-				%>
-					<tr <%=targetUrl%>>
-						<td><%=10-i%></td>
-						<td class="title">공지사항 제목입니다.</td>
-						<td>관리자</td>
-						<td>2020-01-01</td>
-						<td>111</td>
-					</tr>
-				<%
+							targetUrl = "style='cursor:pointer;' onclick=\"location.href='view.do?idx="+${vo.id }+"'\"";
+				%> --%>
+					<c:forEach var="vo" items="${list}">
+						<tr>
+							<td>${vo.no}</td>
+							<td class="title">${vo.title }</td>
+							<td>관리자</td>
+							<td>${vo.regdate }</td>
+							<td>${vo.viewcount }</td>
+						</tr>
+					</c:forEach>
+				<%-- <%
 						}
-				%>
+				%> --%>
 				</tbody>
 			</table>
 		<div class="pagenate clear">

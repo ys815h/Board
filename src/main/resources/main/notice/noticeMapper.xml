@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.notice.NoticeMapper">
+	
+	<select id="list" parameterType="main.notice.NoticeVO" resultType="main.notice.NoticeVO">
+		SELECT * FROM board
+	</select>
+	
+	<insert id="insert" parameterType="main.notice.NoticeVO">
+		INSERT INTO board (
+			no, title, content, regdate, filename_org, filename_real, viewcount
+		) VALUES (
+			#{no}, #{title}, #{content}, NOW(), #{filename_org}, #{filename_real}, 0
+		)
+	</insert>
+	
+	
+</mapper>
